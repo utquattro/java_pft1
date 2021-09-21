@@ -10,4 +10,10 @@ public class SquareTests {
         Square s = new Square(5);
         Assert.assertEquals(s.area(),25);
     }
+
+    @Test
+    public void testStorona(){
+        Square m = new Square(5);
+        Assert.assertNotNull(m.l);
+    }
 }
