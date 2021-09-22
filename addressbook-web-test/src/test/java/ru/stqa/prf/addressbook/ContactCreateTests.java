@@ -28,12 +28,7 @@ public class ContactCreateTests {
     @Test
     public void testUntitledTestCase() throws Exception {
         gotoAddPage();
-        fillNameForm("Bukin","Ivan","bro","xxxNaGubatoRxxx");
-        fillWorkForm("Google", "Kazan");
-        fillTelForm("2444888", "89998887656");
-        fillMailSiteForm("super@mail.ru");
-        fillBdayForm("31","May","1988");
-        fillGroupForm("2");
+        fillUserForm(new UserData("Smith", "Ivan", "Kazan", "super@mail.ru", "89998887777", "31", "May", "1988", "2"));
         clickEnter();
         gotoContactPage();
         clickLogout();
@@ -52,45 +47,23 @@ public class ContactCreateTests {
         wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
     }
 
-    private void fillGroupForm(final String groupnum) {
-        wd.findElement(By.xpath("//div[@id='content']/form/select[5]/option[" + groupnum + "]")).click();
-    }
-
-    private void fillBdayForm(final String day, final String month, String year) {
-        wd.findElement(By.xpath("//option[@value='" + day + "']")).click();
-        wd.findElement(By.xpath("//option[@value='" + month + "']")).click();
-        wd.findElement(By.name("byear")).clear();
-        wd.findElement(By.name("byear")).sendKeys(year);
-    }
-
-    private void fillMailSiteForm(String email) {
-        wd.findElement(By.name("email")).clear();
-        wd.findElement(By.name("email")).sendKeys(email);
-    }
-
-    private void fillTelForm(String numhome, String nummobile) {
-        wd.findElement(By.name("home")).clear();
-        wd.findElement(By.name("home")).sendKeys(numhome);
-        wd.findElement(By.name("mobile")).clear();
-        wd.findElement(By.name("mobile")).sendKeys(nummobile);
-    }
-
-    private void fillWorkForm(String company, String address) {
-        wd.findElement(By.name("company")).clear();
-        wd.findElement(By.name("company")).sendKeys(company);
-        wd.findElement(By.name("address")).clear();
-        wd.findElement(By.name("address")).sendKeys(address);
-    }
-
-    private void fillNameForm(String lastname, String firstname, String middlename, String nickname) {
+    private void fillUserForm(UserData userData) {
         wd.findElement(By.name("firstname")).clear();
-        wd.findElement(By.name("firstname")).sendKeys(firstname);
-        wd.findElement(By.name("middlename")).clear();
-        wd.findElement(By.name("middlename")).sendKeys(middlename);
+        wd.findElement(By.name("firstname")).sendKeys(userData.getFirstname());
         wd.findElement(By.name("lastname")).clear();
-        wd.findElement(By.name("lastname")).sendKeys(lastname);
-        wd.findElement(By.name("nickname")).clear();
-        wd.findElement(By.name("nickname")).sendKeys(nickname);
+        wd.findElement(By.name("lastname")).sendKeys(userData.getLastname());
+        wd.findElement(By.name("address")).clear();
+        wd.findElement(By.name("address")).sendKeys(userData.getAddress());
+        wd.findElement(By.name("mobile")).clear();
+        wd.findElement(By.name("mobile")).sendKeys(userData.getMobile());
+        wd.findElement(By.name("email")).clear();
+        wd.findElement(By.name("email")).sendKeys(userData.getEmail());
+        wd.findElement(By.xpath("//option[@value='" + userData.getDay() + "']")).click();
+        wd.findElement(By.xpath("//option[@value='" + userData.getMonth() + "']")).click();
+        wd.findElement(By.name("byear")).clear();
+        wd.findElement(By.name("byear")).sendKeys(userData.getYear());
+        wd.findElement(By.xpath("//div[@id='content']/form/select[5]/option[" + userData.getGroupnum() + "]")).click();
+
     }
 
     private void gotoAddPage() {
