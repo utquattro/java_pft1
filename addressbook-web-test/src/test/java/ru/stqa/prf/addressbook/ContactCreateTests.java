@@ -2,6 +2,7 @@ package ru.stqa.prf.addressbook;
 
 
 import java.util.concurrent.TimeUnit;
+
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -28,7 +29,16 @@ public class ContactCreateTests {
     @Test
     public void testUntitledTestCase() throws Exception {
         gotoAddPage();
-        fillUserForm(new UserData("Smith", "Ivan", "Kazan", "super@mail.ru", "89998887777", "31", "May", "1988", "2"));
+        fillUserForm(new UserData(
+                "Smith"
+                , "Ivan"
+                , "Kazan"
+                , "super@mail.ru"
+                , "89998887777"
+                , "31"
+                , "May"
+                , "1988"
+                , "2"));
         clickEnter();
         gotoContactPage();
         clickLogout();
