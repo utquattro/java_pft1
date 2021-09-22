@@ -14,14 +14,14 @@ public class ContactCreateTests {
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wd.get("http://192.168.31.179/addressbook/");
-        login();
+        login("admin", "secret");
     }
 
-    private void login() {
+    private void login(String login, String pass) {
         wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys("admin");
+        wd.findElement(By.name("user")).sendKeys(login);
         wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys("secret");
+        wd.findElement(By.name("pass")).sendKeys(pass);
         wd.findElement(By.xpath("//input[@value='Login']")).click();
     }
 
