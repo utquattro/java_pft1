@@ -10,5 +10,6 @@ public class MyFirstProgram {
         Point a = new Point(2,3);
         Point b = new Point (3,3);
         System.out.println(a.distance2(b));
+
     }
 }
