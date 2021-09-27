@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
     private WebDriver wd;
 
-    protected void init() {
+    public void init() {
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wd.get("http://192.168.31.179/addressbook/");
@@ -26,15 +26,15 @@ public class ApplicationManager {
         wd.findElement(By.xpath("//input[@value='Login']")).click();
     }
 
-    protected void returnGroupPage() {
+    public void returnGroupPage() {
       wd.findElement(By.linkText("Logout")).click();
     }
 
-    protected void SubmitGroupCreation() {
+    public void SubmitGroupCreation() {
       wd.findElement(By.name("submit")).click();
     }
 
-    protected void fillGroupForm(GroupData groupData) {
+    public void fillGroupForm(GroupData groupData) {
       wd.findElement(By.name("group_name")).clear();
       wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
       wd.findElement(By.name("group_header")).clear();
@@ -43,15 +43,15 @@ public class ApplicationManager {
       wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
     }
 
-    protected void gotoPageGroup() {
+    public void gotoPageGroup() {
       wd.findElement(By.linkText("groups")).click();
     }
 
-    protected void initGroupCreation() {
+    public void initGroupCreation() {
       wd.findElement(By.name("new")).click();
     }
 
-    protected void stop() {
+    public void stop() {
         wd.quit();
     }
 
@@ -73,11 +73,11 @@ public class ApplicationManager {
           }
       }
 
-    protected void deleteSelectedGroups() {
+    public void deleteSelectedGroups() {
         wd.findElement(By.name("delete")).click();
     }
 
-    protected void selectedGroups() {
+    public void selectedGroups() {
         wd.findElement(By.name("selected[]")).click();
     }
 }
